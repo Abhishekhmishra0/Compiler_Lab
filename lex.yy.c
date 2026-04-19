@@ -463,14 +463,13 @@ int yy_flex_debug = 0;
 #define YY_MORE_ADJ 0
 #define YY_RESTORE_YY_MORE_OFFSET
 char *yytext;
-#line 1 "prog9.l"
-#line 2 "prog9.l"
+#line 1 "prog10.l"
+#line 2 "prog10.l"
     #include <stdio.h>
     #include <stdlib.h>
     #include <ctype.h>
-    int valid = 1;
+#line 471 "lex.yy.c"
 #line 472 "lex.yy.c"
-#line 473 "lex.yy.c"
 
 #define INITIAL 0
 
@@ -687,9 +686,9 @@ YY_DECL
 		}
 
 	{
-#line 7 "prog9.l"
+#line 6 "prog10.l"
 
-#line 692 "lex.yy.c"
+#line 691 "lex.yy.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -748,30 +747,27 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 8 "prog9.l"
+#line 7 "prog10.l"
 {
     int a, b, c, d;
     sscanf(yytext, "%d.%d.%d.%d", &a, &b, &c, &d);
     if(a >= 0 && a <= 255 && b >= 0 && b <= 255 && c >= 0 && c <= 255 && d >= 0 && d <= 255) {
-        valid = 1;
-    }
-    else {
-        valid = 0;
+        printf("%s\n", yytext);
     }
 }
 	YY_BREAK
 case 2:
 /* rule 2 can match eol */
 YY_RULE_SETUP
-#line 18 "prog9.l"
+#line 14 "prog10.l"
 ;
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 19 "prog9.l"
+#line 15 "prog10.l"
 ECHO;
 	YY_BREAK
-#line 774 "lex.yy.c"
+#line 770 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1776,16 +1772,14 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 19 "prog9.l"
+#line 15 "prog10.l"
 
-int main() {
+int main(int argc, char* argv[]) {
+    FILE* fp;
+    fp = fopen(argv[1], "r");
+    yyin = fp;
     yylex();
-    if(valid) {
-        printf("Valid IP Address\n");
-    }
-    else {
-        printf("Invalid IP Address\n"); 
-    }
+    fclose(fp);
     return 0;
 }
 int yywrap() {
